@@ -1,0 +1,36 @@
+﻿{
+  "version": "3.3.0-alpha01",
+  "title": "SimplePersistence.UoW.EntityFrameworkCore",
+  "description": "SimplePersistence.UoW.EntityFrameworkCore offers implementations to the SimplePersistence.UoW using the Entity Framework Core as the ORM.",
+  "authors": [ "João Simões" ],
+  "copyright": "Copyright © 2016 SimplePersistence",
+  "packOptions": {
+    "summary": "SimplePersistence.UoW implementation for Entity Framework Core.",
+    "tags": [ "unit of work", "uow", "persistence", "pattern", "EntityFrameworkCore", "EFCore" ],
+    "projectUrl": "https://github.com/SimplePersistence/SimplePersistence.UoW.EntityFrameworkCore",
+    "licenseUrl": "https://github.com/SimplePersistence/SimplePersistence.UoW.EntityFrameworkCore/blob/master/LICENSE",
+    "iconUrl": "https://avatars3.githubusercontent.com/u/17026510",
+    "releaseNotes": "",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/SimplePersistence/SimplePersistence.UoW.EntityFrameworkCore"
+    }
+  },
+  "buildOptions": {
+    "xmlDoc": true,
+    "optimize": true,
+    "keyFile": "../../SimplePersistence.snk"
+  },
+
+  "frameworks": {
+    "net4.5.1": {},
+    "netstandard1.3": {
+      "dependencies": {
+        "NETStandard.Library": "1.6.0"
+      }
+    }
+  },
+  "dependencies": {
+    "Microsoft.EntityFrameworkCore": "1.0.0"
+  }
+}
