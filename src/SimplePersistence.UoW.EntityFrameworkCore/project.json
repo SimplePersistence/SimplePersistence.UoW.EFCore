@@ -19,7 +19,7 @@
   "buildOptions": {
     "xmlDoc": true,
     "optimize": true,
-    "keyFile": "../../SimplePersistence.snk"
+    "keyFile": "../../tools/SimplePersistence.snk"
   },
 
   "frameworks": {
