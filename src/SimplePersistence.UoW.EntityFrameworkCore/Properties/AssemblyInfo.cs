@@ -38,7 +38,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: Guid("aaaa215f-2f8e-48e9-9a8a-7bb80501b666")]
 
-[assembly: CLSCompliant(true)]
+[assembly: CLSCompliant(false)]
 
 [assembly: AssemblyVersion("3.3.0")]
 [assembly: AssemblyInformationalVersion("3.3.0-alpha01")]
