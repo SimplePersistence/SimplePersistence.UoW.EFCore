@@ -105,7 +105,7 @@ namespace SimplePersistence.UoW.EntityFrameworkCore
 
         #endregion
 
-        #region Implementation of IExposeQueryable<TEntity,in TKey01,in TKey02>
+        #region Implementation of IExposeQueryable<TEntity,in TKey>
 
         /// <summary>
         /// Gets an <see cref="T:System.Linq.IQueryable`1" /> filtered by
