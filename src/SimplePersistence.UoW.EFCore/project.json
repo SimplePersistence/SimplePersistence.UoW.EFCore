@@ -7,13 +7,13 @@
   "packOptions": {
     "summary": "SimplePersistence.UoW implementation for Entity Framework Core.",
     "tags": [ "unit of work", "uow", "persistence", "pattern", "EntityFrameworkCore", "EFCore" ],
-    "projectUrl": "https://github.com/SimplePersistence/SimplePersistence.UoW.EntityFrameworkCore",
-    "licenseUrl": "https://github.com/SimplePersistence/SimplePersistence.UoW.EntityFrameworkCore/blob/master/LICENSE",
+    "projectUrl": "https://github.com/SimplePersistence/SimplePersistence.UoW.EFCore",
+    "licenseUrl": "https://raw.githubusercontent.com/SimplePersistence/SimplePersistence.UoW.EFCore/master/LICENSE",
     "iconUrl": "https://avatars3.githubusercontent.com/u/17026510",
     "releaseNotes": "",
     "repository": {
       "type": "git",
-      "url": "https://github.com/SimplePersistence/SimplePersistence.UoW.EntityFrameworkCore"
+      "url": "https://github.com/SimplePersistence/SimplePersistence.UoW.EFCore"
     }
   },
   "buildOptions": {
