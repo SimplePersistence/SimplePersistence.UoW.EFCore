@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 #endregion
-namespace SimplePersistence.UoW.EntityFrameworkCore
+namespace SimplePersistence.UoW.EFCore
 {
     using System;
     using System.Linq;

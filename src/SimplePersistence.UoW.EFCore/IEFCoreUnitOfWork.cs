@@ -21,37 +21,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 #endregion
-namespace SimplePersistence.UoW.EntityFrameworkCore
+namespace SimplePersistence.UoW.EFCore
 {
-    using System.Linq;
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
-    /// Represents an area used to aggregate Unit of Work logic, 
-    /// like data transformations or procedures, specialized for the Entity Framework Core.
+    /// Represents an Unit of Work specialized for the Entity Framework Core.
     /// </summary>
     /// <typeparam name="TDbContext">The database context type</typeparam>
-    public interface IEFCoreLogicalArea<out TDbContext> : ILogicalArea
+    public interface IEFCoreUnitOfWork<out TDbContext> : IUnitOfWork
         where TDbContext : DbContext
     {
         /// <summary>
         /// The Entity Framework database context
         /// </summary>
         TDbContext Context { get; }
-
-        /// <summary>
-        /// Prepares an <see cref="IQueryable{T}"/> for the specified entity type.
-        /// </summary>
-        /// <typeparam name="TEntity">The entity type</typeparam>
-        /// <returns>The <see cref="IQueryable{T}"/> for the specified entity type.</returns>
-        IQueryable<TEntity> Query<TEntity>() where TEntity : class;
     }
 
     /// <summary>
-    /// Represents an area used to aggregate Unit of Work logic, 
-    /// like data transformations or procedures, specialized for the Entity Framework Core.
+    /// Represents an Unit of Work specialized for the Entity Framework Core.
     /// </summary>
-    public interface IEFCoreLogicalArea : IEFCoreLogicalArea<DbContext>
+    public interface IEFCoreUnitOfWork : IEFCoreUnitOfWork<DbContext>
     {
         
     }

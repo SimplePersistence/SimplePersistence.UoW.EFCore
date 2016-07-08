@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SimplePersistence.UoW.EntityFrameworkCore", "src\SimplePersistence.UoW.EntityFrameworkCore\SimplePersistence.UoW.EntityFrameworkCore.xproj", "{AAAA215F-2F8E-48E9-9A8A-7BB80501B666}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SimplePersistence.UoW.EFCore", "src\SimplePersistence.UoW.EFCore\SimplePersistence.UoW.EFCore.xproj", "{AAAA215F-2F8E-48E9-9A8A-7BB80501B666}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{EEEC9905-3CBC-4884-9BF4-B382C1727923}"
 	ProjectSection(SolutionItems) = preProject

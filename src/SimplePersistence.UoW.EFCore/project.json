@@ -1,7 +1,7 @@
 ﻿{
   "version": "3.3.0-alpha01",
-  "title": "SimplePersistence.UoW.EntityFrameworkCore",
-  "description": "SimplePersistence.UoW.EntityFrameworkCore offers implementations to the SimplePersistence.UoW using the Entity Framework Core as the ORM.",
+  "title": "SimplePersistence.UoW.EFCore",
+  "description": "SimplePersistence.UoW.EFCore offers implementations to the SimplePersistence.UoW using the Entity Framework Core as the ORM.",
   "authors": [ "João Simões" ],
   "copyright": "Copyright © 2016 SimplePersistence",
   "packOptions": {

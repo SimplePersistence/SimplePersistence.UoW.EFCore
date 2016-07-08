@@ -21,28 +21,54 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 #endregion
-namespace SimplePersistence.UoW.EntityFrameworkCore
+namespace SimplePersistence.UoW.EFCore
 {
+    using System;
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
-    /// Represents an Unit of Work specialized for the Entity Framework Core.
+    /// Represents a work area that can be used for aggregating
+    /// UoW properties, specialized for the Entity Framework Core
     /// </summary>
     /// <typeparam name="TDbContext">The database context type</typeparam>
-    public interface IEFCoreUnitOfWork<out TDbContext> : IUnitOfWork
+    public abstract class EFCoreWorkArea<TDbContext> : IEFCoreWorkArea<TDbContext>
         where TDbContext : DbContext
     {
         /// <summary>
+        /// Creates a new instance
+        /// </summary>
+        /// <param name="context">The database context</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        protected EFCoreWorkArea(TDbContext context)
+        {
+            if (context == null) throw new ArgumentNullException(nameof(context));
+            Context = context;
+        }
+
+        #region Implementation of IEFCoreWorkArea<out TDbContext>
+
+        /// <summary>
         /// The Entity Framework database context
         /// </summary>
-        TDbContext Context { get; }
+        public TDbContext Context { get; }
+
+        #endregion
     }
 
     /// <summary>
-    /// Represents an Unit of Work specialized for the Entity Framework Core.
+    /// Represents a work area that can be used for aggregating
+    /// UoW properties, specialized for the Entity Framework Core
     /// </summary>
-    public interface IEFCoreUnitOfWork : IEFCoreUnitOfWork<DbContext>
+    public abstract class EFCoreWorkArea : EFCoreWorkArea<DbContext>, IEFCoreWorkArea
     {
-        
+        /// <summary>
+        /// Creates a new instance
+        /// </summary>
+        /// <param name="context">The database context</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        protected EFCoreWorkArea(DbContext context) : base(context)
+        {
+
+        }
     }
 }

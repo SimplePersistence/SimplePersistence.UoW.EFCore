@@ -21,9 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 #endregion
-namespace SimplePersistence.UoW.EntityFrameworkCore
+namespace SimplePersistence.UoW.EFCore
 {
-    using System;
     using System.Linq;
     using Microsoft.EntityFrameworkCore;
 
@@ -32,54 +31,28 @@ namespace SimplePersistence.UoW.EntityFrameworkCore
     /// like data transformations or procedures, specialized for the Entity Framework Core.
     /// </summary>
     /// <typeparam name="TDbContext">The database context type</typeparam>
-    public abstract class EFCoreLogicalArea<TDbContext> : IEFCoreLogicalArea<TDbContext>
+    public interface IEFCoreLogicalArea<out TDbContext> : ILogicalArea
         where TDbContext : DbContext
     {
         /// <summary>
-        /// Creates a new instance
-        /// </summary>
-        /// <param name="context">The database context</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        protected EFCoreLogicalArea(TDbContext context)
-        {
-            if (context == null) throw new ArgumentNullException(nameof(context));
-            Context = context;
-        }
-
-        #region Implementation of IEFCoreLogicalArea<out TDbContext>
-
-        /// <summary>
         /// The Entity Framework database context
         /// </summary>
-        public TDbContext Context { get; }
+        TDbContext Context { get; }
 
         /// <summary>
         /// Prepares an <see cref="IQueryable{T}"/> for the specified entity type.
         /// </summary>
         /// <typeparam name="TEntity">The entity type</typeparam>
         /// <returns>The <see cref="IQueryable{T}"/> for the specified entity type.</returns>
-        public IQueryable<TEntity> Query<TEntity>() where TEntity : class
-        {
-            return Context.Set<TEntity>();
-        }
-
-        #endregion
+        IQueryable<TEntity> Query<TEntity>() where TEntity : class;
     }
 
     /// <summary>
     /// Represents an area used to aggregate Unit of Work logic, 
     /// like data transformations or procedures, specialized for the Entity Framework Core.
     /// </summary>
-    public abstract class EFCoreLogicalArea : EFCoreLogicalArea<DbContext>
+    public interface IEFCoreLogicalArea : IEFCoreLogicalArea<DbContext>
     {
-        /// <summary>
-        /// Creates a new instance
-        /// </summary>
-        /// <param name="context">The database context</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        protected EFCoreLogicalArea(DbContext context) : base(context)
-        {
-
-        }
+        
     }
 }

@@ -21,17 +21,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 #endregion
-namespace SimplePersistence.UoW.EntityFrameworkCore
+namespace SimplePersistence.UoW.EFCore
 {
     using System;
+    using System.Linq;
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
-    /// Represents a work area that can be used for aggregating
-    /// UoW properties, specialized for the Entity Framework Core
+    /// Represents an area used to aggregate Unit of Work logic, 
+    /// like data transformations or procedures, specialized for the Entity Framework Core.
     /// </summary>
     /// <typeparam name="TDbContext">The database context type</typeparam>
-    public abstract class EFCoreWorkArea<TDbContext> : IEFCoreWorkArea<TDbContext>
+    public abstract class EFCoreLogicalArea<TDbContext> : IEFCoreLogicalArea<TDbContext>
         where TDbContext : DbContext
     {
         /// <summary>
@@ -39,34 +40,44 @@ namespace SimplePersistence.UoW.EntityFrameworkCore
         /// </summary>
         /// <param name="context">The database context</param>
         /// <exception cref="ArgumentNullException"></exception>
-        protected EFCoreWorkArea(TDbContext context)
+        protected EFCoreLogicalArea(TDbContext context)
         {
             if (context == null) throw new ArgumentNullException(nameof(context));
             Context = context;
         }
 
-        #region Implementation of IEFCoreWorkArea<out TDbContext>
+        #region Implementation of IEFCoreLogicalArea<out TDbContext>
 
         /// <summary>
         /// The Entity Framework database context
         /// </summary>
         public TDbContext Context { get; }
 
+        /// <summary>
+        /// Prepares an <see cref="IQueryable{T}"/> for the specified entity type.
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type</typeparam>
+        /// <returns>The <see cref="IQueryable{T}"/> for the specified entity type.</returns>
+        public IQueryable<TEntity> Query<TEntity>() where TEntity : class
+        {
+            return Context.Set<TEntity>();
+        }
+
         #endregion
     }
 
     /// <summary>
-    /// Represents a work area that can be used for aggregating
-    /// UoW properties, specialized for the Entity Framework Core
+    /// Represents an area used to aggregate Unit of Work logic, 
+    /// like data transformations or procedures, specialized for the Entity Framework Core.
     /// </summary>
-    public abstract class EFCoreWorkArea : EFCoreWorkArea<DbContext>, IEFCoreWorkArea
+    public abstract class EFCoreLogicalArea : EFCoreLogicalArea<DbContext>
     {
         /// <summary>
         /// Creates a new instance
         /// </summary>
         /// <param name="context">The database context</param>
         /// <exception cref="ArgumentNullException"></exception>
-        protected EFCoreWorkArea(DbContext context) : base(context)
+        protected EFCoreLogicalArea(DbContext context) : base(context)
         {
 
         }
