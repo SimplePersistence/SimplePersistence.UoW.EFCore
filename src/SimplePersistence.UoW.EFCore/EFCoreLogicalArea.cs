@@ -70,7 +70,7 @@ namespace SimplePersistence.UoW.EFCore
     /// Represents an area used to aggregate Unit of Work logic, 
     /// like data transformations or procedures, specialized for the Entity Framework Core.
     /// </summary>
-    public abstract class EFCoreLogicalArea : EFCoreLogicalArea<DbContext>
+    public abstract class EFCoreLogicalArea : EFCoreLogicalArea<DbContext>, IEFCoreLogicalArea
     {
         /// <summary>
         /// Creates a new instance

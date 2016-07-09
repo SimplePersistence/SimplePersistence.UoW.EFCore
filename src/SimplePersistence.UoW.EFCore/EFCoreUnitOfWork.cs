@@ -181,7 +181,7 @@ namespace SimplePersistence.UoW.EFCore
     /// An implementation compatible with Entity Framework Core for the Unit of Work pattern.
     /// Underline, it also uses work scopes (see: <see cref="ScopeEnabledUnitOfWork"/>).
     /// </summary>
-    public abstract class EFCoreUnitOfWork : EFCoreUnitOfWork<DbContext>
+    public abstract class EFCoreUnitOfWork : EFCoreUnitOfWork<DbContext>, IEFCoreUnitOfWork
     {
         /// <summary>
         /// Creates a new instance
