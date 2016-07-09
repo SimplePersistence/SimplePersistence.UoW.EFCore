@@ -116,6 +116,25 @@ namespace SimplePersistence.UoW.EFCore
         public abstract IQueryable<TEntity> QueryById(TKey id);
 
         #endregion
+
+        #region Overrides of EFCoreQueryableRepository<TEntity>
+
+        /// <summary>
+        /// Gets an <see cref="T:System.Linq.IQueryable`1" /> filtered by
+        /// the entity id
+        /// </summary>
+        /// <param name="ids">The entity unique identifiers</param>
+        /// <returns>The <see cref="T:System.Linq.IQueryable`1" /> object</returns>
+        public override IQueryable<TEntity> QueryById(params object[] ids)
+        {
+            if (ids == null)
+                throw new ArgumentNullException(nameof(ids));
+            if (ids.Length != 1)
+                throw new ArgumentException("Collection must contain one element.", nameof(ids));
+            return QueryById((TKey) ids[0]);
+        }
+
+        #endregion
     }
 
     /// <summary>
@@ -197,6 +216,25 @@ namespace SimplePersistence.UoW.EFCore
         /// <param name="id02">The entity second unique identifier value</param>
         /// <returns>The <see cref="T:System.Linq.IQueryable`1" /> object</returns>
         public abstract IQueryable<TEntity> QueryById(TKey01 id01, TKey02 id02);
+
+        #endregion
+
+        #region Overrides of EFCoreQueryableRepository<TEntity>
+
+        /// <summary>
+        /// Gets an <see cref="T:System.Linq.IQueryable`1" /> filtered by
+        /// the entity id
+        /// </summary>
+        /// <param name="ids">The entity unique identifiers</param>
+        /// <returns>The <see cref="T:System.Linq.IQueryable`1" /> object</returns>
+        public override IQueryable<TEntity> QueryById(params object[] ids)
+        {
+            if (ids == null)
+                throw new ArgumentNullException(nameof(ids));
+            if (ids.Length != 2)
+                throw new ArgumentException("Collection must contain two element.", nameof(ids));
+            return QueryById((TKey01) ids[0], (TKey02) ids[1]);
+        }
 
         #endregion
     }
@@ -286,6 +324,25 @@ namespace SimplePersistence.UoW.EFCore
         /// <param name="id03">The entity third unique identifier value</param>
         /// <returns>The <see cref="T:System.Linq.IQueryable`1" /> object</returns>
         public abstract IQueryable<TEntity> QueryById(TKey01 id01, TKey02 id02, TKey03 id03);
+
+        #endregion
+
+        #region Overrides of EFCoreQueryableRepository<TEntity>
+
+        /// <summary>
+        /// Gets an <see cref="T:System.Linq.IQueryable`1" /> filtered by
+        /// the entity id
+        /// </summary>
+        /// <param name="ids">The entity unique identifiers</param>
+        /// <returns>The <see cref="T:System.Linq.IQueryable`1" /> object</returns>
+        public override IQueryable<TEntity> QueryById(params object[] ids)
+        {
+            if (ids == null)
+                throw new ArgumentNullException(nameof(ids));
+            if (ids.Length != 3)
+                throw new ArgumentException("Collection must contain three element.", nameof(ids));
+            return QueryById((TKey01) ids[0], (TKey02) ids[1], (TKey03) ids[2]);
+        }
 
         #endregion
     }
@@ -381,6 +438,25 @@ namespace SimplePersistence.UoW.EFCore
         /// <param name="id04">The entity fourth unique identifier value</param>
         /// <returns>The <see cref="T:System.Linq.IQueryable`1" /> object</returns>
         public abstract IQueryable<TEntity> QueryById(TKey01 id01, TKey02 id02, TKey03 id03, TKey04 id04);
+
+        #endregion
+
+        #region Overrides of EFCoreQueryableRepository<TEntity>
+
+        /// <summary>
+        /// Gets an <see cref="T:System.Linq.IQueryable`1" /> filtered by
+        /// the entity id
+        /// </summary>
+        /// <param name="ids">The entity unique identifiers</param>
+        /// <returns>The <see cref="T:System.Linq.IQueryable`1" /> object</returns>
+        public override IQueryable<TEntity> QueryById(params object[] ids)
+        {
+            if (ids == null)
+                throw new ArgumentNullException(nameof(ids));
+            if (ids.Length != 4)
+                throw new ArgumentException("Collection must contain four element.", nameof(ids));
+            return QueryById((TKey01) ids[0], (TKey02) ids[1], (TKey03) ids[2], (TKey03) ids[3]);
+        }
 
         #endregion
     }
