@@ -74,9 +74,11 @@ namespace SimplePersistence.UoW.EFCore
         /// <typeparam name="T">The query item type</typeparam>
         /// <param name="queryable">The query to wrap</param>
         /// <returns>An <see cref="T:SimplePersistence.UoW.IAsyncQueryable`1" /> instance, wrapping the given query</returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public override IAsyncQueryable<T> PrepareAsyncQueryable<T>(IQueryable<T> queryable)
         {
-            throw new NotImplementedException();
+            if (queryable == null) throw new ArgumentNullException(nameof(queryable));
+            return new EFCoreAsyncQueryable<T>(queryable);
         }
 
         #endregion
