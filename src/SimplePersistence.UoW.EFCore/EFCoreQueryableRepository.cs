@@ -32,13 +32,13 @@ namespace SimplePersistence.UoW.EFCore
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
-    /// Implementation of an <see cref="IQueryableRepository{TEntity,TId}"/> for the Entity Framework Core
+    /// Implementation of an <see cref="IQueryableRepository{TEntity}"/> for the Entity Framework Core
     /// exposing both sync and async operations. It also exposes an <see cref="IQueryable{TEntity}"/>.
     /// </summary>
     /// <typeparam name="TEntity">The entity type</typeparam>
     /// <typeparam name="TKey">The entity id type</typeparam>
     public abstract class EFCoreQueryableRepository<TEntity, TKey> :
-        EFCoreQueryableRepository<TEntity>, IEFCoreQueryableRepository<TEntity, TKey>
+            EFCoreQueryableRepository<TEntity>, IEFCoreQueryableRepository<TEntity, TKey>
         where TEntity : class
     {
         /// <summary>
@@ -47,6 +47,7 @@ namespace SimplePersistence.UoW.EFCore
         /// <param name="context">The database context</param>
         protected EFCoreQueryableRepository(DbContext context) : base(context)
         {
+
         }
 
         #region Implementation of IAsyncRepository<TEntity,in TKey>
@@ -54,8 +55,8 @@ namespace SimplePersistence.UoW.EFCore
         /// <summary>
         /// Gets an entity by its unique identifier from this repository asynchronously
         /// </summary>
-        /// <param name="id">The entity unique identifier value</param>
-        /// <returns>A <see cref="T:System.Threading.Tasks.Task`1" /> that will fetch the entity</returns>
+        /// <param name="id">The entity unique identifier</param>
+        /// <returns>A <see cref="T:System.Threading.Tasks.Task" /> that will fetch the entity</returns>
         public async Task<TEntity> GetByIdAsync(TKey id)
         {
             return await QueryById(id).SingleOrDefaultAsync();
@@ -64,7 +65,7 @@ namespace SimplePersistence.UoW.EFCore
         /// <summary>
         /// Gets an entity by its unique identifier from this repository asynchronously
         /// </summary>
-        /// <param name="id">The entity unique identifier value</param>
+        /// <param name="id">The entity unique identifier</param>
         /// <param name="ct">The <see cref="T:System.Threading.CancellationToken" /> for the returned task</param>
         /// <returns>A <see cref="T:System.Threading.Tasks.Task`1" /> that will fetch the entity</returns>
         public async Task<TEntity> GetByIdAsync(TKey id, CancellationToken ct)
@@ -73,7 +74,7 @@ namespace SimplePersistence.UoW.EFCore
         }
 
         /// <summary>Checks if an entity with the given key exists</summary>
-        /// <param name="id">The entity unique identifier value</param>
+        /// <param name="id">The entity unique identifier</param>
         /// <param name="ct">The <see cref="T:System.Threading.CancellationToken" /> for the returned task</param>
         /// <returns>True if entity exists</returns>
         public async Task<bool> ExistsAsync(TKey id, CancellationToken ct = new CancellationToken())
@@ -88,7 +89,7 @@ namespace SimplePersistence.UoW.EFCore
         /// <summary>
         /// Gets an entity by its unique identifier from this repository
         /// </summary>
-        /// <param name="id">The entity unique identifier value</param>
+        /// <param name="id">The entity unique identifier</param>
         /// <returns>The entity or null if not found</returns>
         public TEntity GetById(TKey id)
         {
@@ -96,7 +97,7 @@ namespace SimplePersistence.UoW.EFCore
         }
 
         /// <summary>Checks if an entity with the given key exists</summary>
-        /// <param name="id">The entity unique identifier value</param>
+        /// <param name="id">The entity unique identifier</param>
         /// <returns>True if entity exists</returns>
         public bool Exists(TKey id)
         {
@@ -111,7 +112,7 @@ namespace SimplePersistence.UoW.EFCore
         /// Gets an <see cref="T:System.Linq.IQueryable`1" /> filtered by
         /// the entity id
         /// </summary>
-        /// <param name="id">The entity unique identifier value</param>
+        /// <param name="id">The entity unique identifier</param>
         /// <returns>The <see cref="T:System.Linq.IQueryable`1" /> object</returns>
         public abstract IQueryable<TEntity> QueryById(TKey id);
 
@@ -131,7 +132,7 @@ namespace SimplePersistence.UoW.EFCore
                 throw new ArgumentNullException(nameof(ids));
             if (ids.Length != 1)
                 throw new ArgumentException("Collection must contain one element.", nameof(ids));
-            return QueryById((TKey) ids[0]);
+            return QueryById((TKey)ids[0]);
         }
 
         #endregion
@@ -145,7 +146,7 @@ namespace SimplePersistence.UoW.EFCore
     /// <typeparam name="TKey01">The entity id first type</typeparam>
     /// <typeparam name="TKey02">The entity id second type</typeparam>
     public abstract class EFCoreQueryableRepository<TEntity, TKey01, TKey02> :
-        EFCoreQueryableRepository<TEntity>, IEFCoreQueryableRepository<TEntity, TKey01, TKey02>
+            EFCoreQueryableRepository<TEntity>, IEFCoreQueryableRepository<TEntity, TKey01, TKey02>
         where TEntity : class
     {
         /// <summary>
@@ -154,6 +155,7 @@ namespace SimplePersistence.UoW.EFCore
         /// <param name="context">The database context</param>
         protected EFCoreQueryableRepository(DbContext context) : base(context)
         {
+
         }
 
         #region Implementation of IAsyncRepository<TEntity,in TKey01,in TKey02>
@@ -233,7 +235,7 @@ namespace SimplePersistence.UoW.EFCore
                 throw new ArgumentNullException(nameof(ids));
             if (ids.Length != 2)
                 throw new ArgumentException("Collection must contain two element.", nameof(ids));
-            return QueryById((TKey01) ids[0], (TKey02) ids[1]);
+            return QueryById((TKey01)ids[0], (TKey02)ids[1]);
         }
 
         #endregion
@@ -248,7 +250,7 @@ namespace SimplePersistence.UoW.EFCore
     /// <typeparam name="TKey02">The entity id second type</typeparam>
     /// <typeparam name="TKey03">The entity id third type</typeparam>
     public abstract class EFCoreQueryableRepository<TEntity, TKey01, TKey02, TKey03> :
-        EFCoreQueryableRepository<TEntity>, IEFCoreQueryableRepository<TEntity, TKey01, TKey02, TKey03>
+            EFCoreQueryableRepository<TEntity>, IEFCoreQueryableRepository<TEntity, TKey01, TKey02, TKey03>
         where TEntity : class
     {
         /// <summary>
@@ -257,6 +259,7 @@ namespace SimplePersistence.UoW.EFCore
         /// <param name="context">The database context</param>
         protected EFCoreQueryableRepository(DbContext context) : base(context)
         {
+
         }
 
         #region Implementation of IAsyncRepository<TEntity,in TKey01,in TKey02,in TKey03>
@@ -341,7 +344,7 @@ namespace SimplePersistence.UoW.EFCore
                 throw new ArgumentNullException(nameof(ids));
             if (ids.Length != 3)
                 throw new ArgumentException("Collection must contain three element.", nameof(ids));
-            return QueryById((TKey01) ids[0], (TKey02) ids[1], (TKey03) ids[2]);
+            return QueryById((TKey01)ids[0], (TKey02)ids[1], (TKey03)ids[2]);
         }
 
         #endregion
@@ -357,7 +360,7 @@ namespace SimplePersistence.UoW.EFCore
     /// <typeparam name="TKey03">The entity id third type</typeparam>
     /// <typeparam name="TKey04">The entity id fourth type</typeparam>
     public abstract class EFCoreQueryableRepository<TEntity, TKey01, TKey02, TKey03, TKey04> :
-        EFCoreQueryableRepository<TEntity>, IEFCoreQueryableRepository<TEntity, TKey01, TKey02, TKey03, TKey04>
+            EFCoreQueryableRepository<TEntity>, IEFCoreQueryableRepository<TEntity, TKey01, TKey02, TKey03, TKey04>
         where TEntity : class
     {
         /// <summary>
@@ -366,6 +369,7 @@ namespace SimplePersistence.UoW.EFCore
         /// <param name="context">The database context</param>
         protected EFCoreQueryableRepository(DbContext context) : base(context)
         {
+
         }
 
         #region Implementation of IAsyncRepository<TEntity,in TKey01,in TKey02,in TKey03,in TKey04>
@@ -455,7 +459,7 @@ namespace SimplePersistence.UoW.EFCore
                 throw new ArgumentNullException(nameof(ids));
             if (ids.Length != 4)
                 throw new ArgumentException("Collection must contain four element.", nameof(ids));
-            return QueryById((TKey01) ids[0], (TKey02) ids[1], (TKey03) ids[2], (TKey03) ids[3]);
+            return QueryById((TKey01)ids[0], (TKey02)ids[1], (TKey03)ids[2], (TKey04)ids[3]);
         }
 
         #endregion
